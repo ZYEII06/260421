@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <script src="libraries/p5.min.js"></script>
+    <script src="libraries/p5.sound.min.js"></script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #050505; overflow: hidden; font-family: 'Courier New', Courier, monospace; }
+        
+        /* Iframe 顯示容器 */
+        #gallery-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 85vw;
+            height: 80vh;
+            background: rgba(0, 0, 0, 0.95);
+            border: 3px solid #5504f7;
+            box-shadow: 0 0 30px rgba(69, 54, 233, 0.488);
+            display: none; /* 預設隱藏 */
+            z-index: 100;
+            border-radius: 10px;
+        }
+
+        #close-btn {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            color: #ff0059;
+            cursor: pointer;
+            background: none;
+            border: 2px solid #54051f;
+            padding: 5px 15px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        #close-btn:hover {
+            background: #450bb1;
+            color: #2f0505;
+        }
+
+        /* 載入動畫樣式 */
+        #loader {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
+            border: 5px solid #1a1a1a;
+            border-top: 5px solid #de1c53;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            display: none;
+            z-index: 101;
+        }
+
+        @keyframes spin {
+            0% { transform: translate(-50%, -50%) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        iframe { width: 100%; height: 100%; border: none; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div id="gallery-overlay">
+        <button id="close-btn" onclick="closeGallery()">CLOSE [X]</button>
+        <div id="loader"></div>
+        <div id="iframe-container" style="width: 100%; height: 100%;"></div>
+    </div>
+
+    <script src="sketch.js"></script>
+    <script>
+        function closeGallery() {
+            document.getElementById('gallery-overlay').style.display = 'none';
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('iframe-container').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
